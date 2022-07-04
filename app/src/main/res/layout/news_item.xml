@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/default_margin_8dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/img_thumb"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars"
+            android:contentDescription="@string/cd_news_img" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txt_tittle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_margin_16dp"
+            android:layout_marginTop="@dimen/default_margin_16dp"
+            android:layout_marginEnd="@dimen/default_margin_16dp"
+            tools:text="Osasco atropela Barueri"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_thumb" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txt_body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_margin_16dp"
+            android:layout_marginTop="@dimen/default_margin_16dp"
+            android:layout_marginEnd="@dimen/default_margin_16dp"
+            android:gravity="center"
+            tools:text="O time de Osasco conquistou o 16º título do Campeonato Paulista feminino de vôlei."
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_tittle" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_link"
+            style="?attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_margin_16dp"
+            android:layout_marginTop="@dimen/default_margin_16dp"
+            android:layout_marginBottom="@dimen/default_margin_8dp"
+            android:text="@string/txt_link"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_body" />
+
+        <ImageView
+            android:id="@+id/img_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/default_margin_16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_link"
+            app:layout_constraintEnd_toStartOf="@+id/img_share"
+            app:layout_constraintTop_toTopOf="@+id/btn_link"
+            app:layout_constraintVertical_bias="0.666"
+            app:srcCompat="@drawable/ic_baseline_star_24"
+            android:contentDescription="@string/cd_favorite_icon" />
+
+        <ImageView
+            android:id="@+id/img_share"
+            android:layout_width="24dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/default_margin_16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/img_favorite"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/img_favorite"
+            app:srcCompat="@drawable/ic_share"
+            android:contentDescription="@string/cd_share_icon" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
