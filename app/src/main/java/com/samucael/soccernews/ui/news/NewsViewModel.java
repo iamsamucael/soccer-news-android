@@ -4,25 +4,49 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.samucael.soccernews.data.remote.SoccerNewsApi;
 import com.samucael.soccernews.domain.News;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class NewsViewModel extends ViewModel {
 
-    private final MutableLiveData<List<News>> news;
+    private final MutableLiveData<List<News>> news = new MutableLiveData<>();
+    private final SoccerNewsApi api;
 
     public NewsViewModel() {
-        this.news = new MutableLiveData<>();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://iamsamucael.github.io/soccer-news-api/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
-        List<News> news = new ArrayList<>();
-        news.add(new News("Seleção brasileira feminina vence", "Neque porro quisquam est qui dolorem ipsum."));
-        news.add(new News("Sampaio vence contra Sport", "is simply dummy text of the printing and typesetting industry."));
-        news.add(new News("Inter goleia o Grêmio no Brasileirão", "There is no one who loves pain itself."));
+         api = retrofit.create(SoccerNewsApi.class);
+        this.findNews();
+    }
 
-        this.news.setValue(news);
+    private void findNews() {
+        api.getNews().enqueue(new Callback<List<News>>() {
+            @Override
+            public void onResponse(Call<List<News>> call, Response<List<News>> response) {
+                if (response.isSuccessful()) {
+                    news.setValue(response.body());
+                } else {
 
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<News>> call, Throwable t) {
+
+            }
+        });
     }
 
     public LiveData<List<News>> getNews() {

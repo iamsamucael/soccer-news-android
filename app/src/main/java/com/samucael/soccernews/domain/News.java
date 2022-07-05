@@ -4,11 +4,8 @@ public class News {
 
     private String tittle;
     private String body;
-
-    public News(String tittle, String body) {
-        this.tittle = tittle;
-        this.body = body;
-    }
+    private String image;
+    private String link;
 
     public String getTittle() {
         return tittle;
@@ -24,5 +21,21 @@ public class News {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
     }
 }
