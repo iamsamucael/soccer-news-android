@@ -17,10 +17,12 @@ import java.util.List;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
-    private List<News> news;
+    private final List<News> news;
+    private final View.OnClickListener favoriteListener;
 
-    public NewsAdapter(List<News> news){
+    public NewsAdapter(List<News> news, View.OnClickListener favoriteListener){
         this.news = news;
+        this.favoriteListener = favoriteListener;
     }
 
     @NonNull
@@ -39,11 +41,21 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         Picasso.get().load(news.getImage())
                 .fit()
                 .into(holder.binding.imgThumb);
+        // Implementação da função "abrir link"
         holder.binding.btnLink.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(Uri.parse(news.getLink()));
             holder.itemView.getContext().startActivity(intent);
         });
+        // Implementação da função "compartilhar"
+        holder.binding.imgShare.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            intent.putExtra(Intent.EXTRA_TEXT, news.getLink());
+            holder.itemView.getContext().startActivity(Intent.createChooser(intent, "Compartilhar"));
+        });
+        // Implementação da função "favoritar"
+        holder.binding.imgFavorite.setOnClickListener(this.favoriteListener);
     }
 
     @Override

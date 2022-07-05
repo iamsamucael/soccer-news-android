@@ -3,7 +3,7 @@
 
     <string name="title_news">News</string>
     <string name="title_favorites">Favorites</string>
-    <string name="txt_link">OPEN LINK</string>
+    <string name="txt_link">ABRIR LINK</string>
     <string name="cd_news_img">News image.</string>
     <string name="cd_favorite_icon">Favorite icon.</string>
     <string name="cd_share_icon">Share icon.</string>
