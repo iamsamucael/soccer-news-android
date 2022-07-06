@@ -1,41 +1,18 @@
 package com.samucael.soccernews.domain;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class News {
 
-    private String tittle;
-    private String body;
-    private String image;
-    private String link;
+    @PrimaryKey
+    public Integer id;
+    public String tittle;
+    public String body;
+    public String image;
+    public String link;
+    public boolean favorite;
 
-    public String getTittle() {
-        return tittle;
-    }
 
-    public void setTittle(String tittle) {
-        this.tittle = tittle;
-    }
-
-    public String getBody() {
-        return body;
-    }
-
-    public void setBody(String body) {
-        this.body = body;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public String getLink() {
-        return link;
-    }
-
-    public void setLink(String link) {
-        this.link = link;
-    }
 }

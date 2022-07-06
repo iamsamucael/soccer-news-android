@@ -1,17 +1,16 @@
 package com.samucael.soccernews.ui.news;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.samucael.soccernews.MainActivity;
 import com.samucael.soccernews.databinding.FragmentNewsBinding;
 import com.samucael.soccernews.ui.adapter.NewsAdapter;
 
@@ -28,8 +27,9 @@ public class NewsFragment extends Fragment {
 
         binding.rvNews.setLayoutManager(new LinearLayoutManager(getContext()));
         newsViewModel.getNews().observe(getViewLifecycleOwner(), news -> {
-            binding.rvNews.setAdapter(new NewsAdapter(news, v -> {
-                // TODO implementar o favoritar
+            binding.rvNews.setAdapter(new NewsAdapter(news, updatedNews -> {
+                MainActivity activity = (MainActivity) getActivity();
+                    activity.getDb().newsDao().save(updatedNews);
             }));
         });
         return root;
@@ -40,4 +40,6 @@ public class NewsFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
+
 }

@@ -1,9 +1,13 @@
 package com.samucael.soccernews.ui.news;
 
+import android.app.Application;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+import androidx.room.Room;
 
+import com.samucael.soccernews.data.local.AppDatabase;
 import com.samucael.soccernews.data.remote.SoccerNewsApi;
 import com.samucael.soccernews.domain.News;
 
@@ -26,8 +30,8 @@ public class NewsViewModel extends ViewModel {
                 .baseUrl("https://iamsamucael.github.io/soccer-news-api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
          api = retrofit.create(SoccerNewsApi.class);
+
         this.findNews();
     }
 

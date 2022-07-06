@@ -4,13 +4,18 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.samucael.soccernews.MainActivity;
 import com.samucael.soccernews.databinding.FragmentFavoritesBinding;
+import com.samucael.soccernews.domain.News;
+import com.samucael.soccernews.ui.adapter.NewsAdapter;
+
+import java.util.List;
 
 public class FavoritesFragment extends Fragment {
 
@@ -21,10 +26,23 @@ public class FavoritesFragment extends Fragment {
         FavoritesViewModel favoritesViewModel = new ViewModelProvider(this).get(FavoritesViewModel.class);
 
         binding = FragmentFavoritesBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
 
-        favoritesViewModel.getText().observe(getViewLifecycleOwner(), binding.textFavorites::setText);
-        return root;
+        loadFavoriteNews();
+
+        return binding.getRoot();
+    }
+
+    private void loadFavoriteNews() {
+        MainActivity activity = (MainActivity) getActivity();
+        List<News> favoriteNews = null;
+        if (activity != null) {
+            favoriteNews = activity.getDb().newsDao().loadFavoritesNews();
+        }
+        binding.rvNews.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.rvNews.setAdapter(new NewsAdapter(favoriteNews, updatedNews -> {
+            activity.getDb().newsDao().save(updatedNews);
+            loadFavoriteNews();
+        }));
     }
 
     @Override
