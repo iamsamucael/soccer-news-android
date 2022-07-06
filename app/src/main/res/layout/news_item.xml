@@ -14,7 +14,7 @@
         <ImageView
             android:id="@+id/img_thumb"
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="200dp"
             android:contentDescription="@string/cd_news_img"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

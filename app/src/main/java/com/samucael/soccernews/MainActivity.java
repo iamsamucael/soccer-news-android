@@ -30,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
+
+       getSupportActionBar().setDisplayShowHomeEnabled(true);
+       getSupportActionBar().setIcon(R.drawable.ic_action_bar);
+
         setupDb();
 
     }

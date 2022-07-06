@@ -32,6 +32,20 @@ public class NewsFragment extends Fragment {
                     activity.getDb().newsDao().save(updatedNews);
             }));
         });
+
+        newsViewModel.getState().observe(getViewLifecycleOwner(), state -> {
+            switch (state){
+                case DOING:
+                    // TODO: Iniciar SwipeRefreshLayout (loading)
+                    break;
+                case DONE:
+                    // TODO: Finalizar SwipeRefreshLayout (loading)
+                    break;
+                case ERROR:
+                    // TODO: Finalizar SwipeRefreshLayout (loading)
+                    // TODO: Mostra um erro.
+            }
+        });
         return root;
     }
 
