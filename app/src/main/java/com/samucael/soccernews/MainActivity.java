@@ -15,7 +15,6 @@ import com.samucael.soccernews.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
-    private AppDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +23,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_news, R.id.navigation_favorites).build();
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.navigation_news, R.id.navigation_favorites).build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
@@ -34,17 +32,7 @@ public class MainActivity extends AppCompatActivity {
        getSupportActionBar().setDisplayShowHomeEnabled(true);
        getSupportActionBar().setIcon(R.drawable.ic_action_bar);
 
-        setupDb();
 
     }
 
-    private void setupDb() {
-        db = Room.databaseBuilder(this, AppDatabase.class, "soocer-news")
-                .allowMainThreadQueries()
-                .build();
-    }
-
-    public AppDatabase getDb() {
-        return db;
-    }
 }
